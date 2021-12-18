@@ -5,19 +5,13 @@ class Layout(Turtle):
 
     def __init__(self):
         super().__init__()
-        self.color("White")
         self.penup()
         self.l_score = 0
         self.r_score = 0
-        self.goto(0, 260)
+        self.color("White")
+        self.draw_middle_line()
         self.update_score()
         self.hideturtle()
-        self.draw_middle_line()
-
-    def update_score(self):
-        self.clear()
-        self.write(f"{self.l_score}          {self.r_score}", align="center", font=('Courier', 30, 'normal'))
-        # self.score += 1
 
     def draw_middle_line(self):
         self.penup()
@@ -29,6 +23,20 @@ class Layout(Turtle):
             self.penup()
             self.forward(15)
 
-    # def game_over(self):
-    #     self.goto(0, 0)
-    #     self.write("Game Over", align="center", font=('Courier', 40, 'normal'))
+    def update_score(self):
+        self.clear()
+        self.goto(0, 260)
+        self.write(f"{self.l_score}          {self.r_score}", align="center", font=('Courier', 20, 'normal'))
+
+    def increase_score(self, player):
+        if player == "left_player":
+            self.l_score += 1
+        if player == "right_player":
+            self.r_score += 1
+        self.update_score()
+        if self.l_score or self.r_score == 10:
+            self.game_over(player)
+
+    def game_over(self, player):
+        self.goto(0, 0)
+        self.write(f"Game Over, {player} won", align="center", font=('Courier', 40, 'normal'))

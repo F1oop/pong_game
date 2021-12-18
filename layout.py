@@ -34,8 +34,10 @@ class Layout(Turtle):
         if player == "right_player":
             self.r_score += 1
         self.update_score()
-        if self.l_score or self.r_score == 10:
+        if self.l_score or self.r_score == 3:
             self.game_over(player)
+            return False
+        return True
 
     def game_over(self, player):
         self.goto(0, 0)

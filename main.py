@@ -38,10 +38,12 @@ while game_is_live:
 
 #     check for collisions with vertical walls
     if ball.xcor() >= 390:
-        layout.increase_score("left_player")
+        game_is_live = layout.increase_score("left_player")
         ball.ball_reset()
+        l_paddle.paddle_reset(-350)
     if ball.xcor() <= -390:
-        layout.increase_score("right_player")
+        game_is_live = layout.increase_score("right_player")
         ball.ball_reset()
+        r_paddle.paddle_reset(350)
 
 screen.exitonclick()
